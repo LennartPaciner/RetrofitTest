@@ -30,6 +30,8 @@ class PostFragment : Fragment() {
         _binding = FragmentPostBinding.inflate(inflater, container, false)
 
         return binding.root
+
+        //test123
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
