@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.retrofittest.ui.StartFragment"
+        android:label="fragment_start"
+        tools:layout="@layout/fragment_start" >
+        <action
+            android:id="@+id/action_startFragment_to_getFragment"
+            app:destination="@id/getFragment" />
+        <action
+            android:id="@+id/action_startFragment_to_postFragment"
+            app:destination="@id/postFragment" />
+        <argument
+            android:name="username"
+            android:defaultValue="null"
+            app:argType="string" />
+        <argument
+            android:name="password"
+            android:defaultValue="null"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/getFragment"
+        android:name="com.example.retrofittest.ui.GetFragment"
+        android:label="fragment_get"
+        tools:layout="@layout/fragment_get" />
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="com.example.retrofittest.ui.PostFragment"
+        android:label="fragment_post"
+        tools:layout="@layout/fragment_post" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.retrofittest.ui.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_startFragment"
+            app:destination="@id/startFragment"
+            app:enterAnim="@anim/slide_in_right" >
+            <argument
+                android:name="username" />
+            <argument
+                android:name="password" />
+        </action>
+    </fragment>
+</navigation>
