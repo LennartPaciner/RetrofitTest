@@ -63,7 +63,9 @@ class GetFragment : Fragment() {
             todoAdapter.setTodoList(it)
         })
 
+        binding.progressBar.isVisible = true
         viewModel.getTodos()
+        binding.progressBar.isVisible = false
 
 
         /*
