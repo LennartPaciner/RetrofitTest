@@ -7,22 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.retrofittest.CreateTodo
-import com.example.retrofittest.RetrofitInstance
-import com.example.retrofittest.Todo
-import com.example.retrofittest.TodoAdapter
+import com.example.retrofittest.api.RetrofitInstance
+import com.example.retrofittest.adapters.TodoAdapter
+import com.example.retrofittest.api.Todo
+import com.example.retrofittest.api.TodoApi
 import com.example.retrofittest.databinding.FragmentGetBinding
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonParser
-import com.google.gson.stream.JsonWriter
-import kotlinx.coroutines.launch
+import com.example.retrofittest.repository.TodoRepository
+import com.example.retrofittest.viewmodels.TodoViewModel
+import com.example.retrofittest.viewmodels.TodoViewModelFactory
 import retrofit2.HttpException
-import retrofit2.converter.gson.GsonConverterFactory
 import java.io.IOException
-import java.lang.ProcessBuilder.Redirect.to
+
+// TODO artikel der mvvm retrofit beispiel beschreibt: https://medium.com/android-beginners/mvvm-with-kotlin-coroutines-and-retrofit-example-d3f5f3b09050
+// TODO nochmal cleanes projekt recyclercview raffen, retrofit aufruf, repository aufruf, viewmodel aufruf, in fragment aufrufen
 
 class GetFragment : Fragment() {
 
@@ -30,6 +31,9 @@ class GetFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var todoAdapter: TodoAdapter
+
+    //viewmodel
+    private lateinit var viewModel: TodoViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,8 +48,25 @@ class GetFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpRecyclerView()
+        val todoApi = TodoApi.getInstance()
+        val todoRepository = TodoRepository(todoApi)
 
+        // reyclerviewsetup
+        todoAdapter = TodoAdapter()
+        binding.rvTodos.adapter = todoAdapter
+        binding.rvTodos.layoutManager = LinearLayoutManager(requireContext())
+
+        // viewmodel setup
+        viewModel = ViewModelProvider(this, TodoViewModelFactory(todoRepository)).get(TodoViewModel::class.java)
+
+        viewModel.todoList.observe(viewLifecycleOwner, {
+            todoAdapter.setTodoList(it)
+        })
+
+        viewModel.getTodos()
+
+
+        /*
         lifecycleScope.launchWhenCreated {
             binding.progressBar.isVisible = true
             val response = try {
@@ -69,21 +90,13 @@ class GetFragment : Fragment() {
                 Log.e("xd", "response not succesful")
             }
             binding.progressBar.isVisible = false
-        }
+        }*/
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
-    private fun setUpRecyclerView() = binding.rvTodos.apply {
-        todoAdapter = TodoAdapter()
-        adapter = todoAdapter
-        layoutManager = LinearLayoutManager(requireContext())
-
-    }
-
 
 }
 

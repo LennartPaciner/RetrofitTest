@@ -10,9 +10,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import com.example.retrofittest.CreateTodo
-import com.example.retrofittest.R
-import com.example.retrofittest.RetrofitInstance
+import com.example.retrofittest.api.CreateTodo
+import com.example.retrofittest.api.RetrofitInstance
 import com.example.retrofittest.databinding.FragmentPostBinding
 import com.google.gson.Gson
 import retrofit2.HttpException
@@ -31,7 +30,6 @@ class PostFragment : Fragment() {
 
         return binding.root
 
-        //test123
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

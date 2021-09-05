@@ -1,4 +1,4 @@
-package com.example.retrofittest
+package com.example.retrofittest.api
 
 data class CreateTodo(
     val id: Int,
