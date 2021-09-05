@@ -1,4 +1,4 @@
-package com.example.retrofittest
+package com.example.retrofittest.api
 
 
 //mit Plugin kotlin class aus json erstellt -> brauchen kotlin klasse die die attribute aus dem json ergebnis darstellt

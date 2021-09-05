@@ -1,10 +1,11 @@
-package com.example.retrofittest
+package com.example.retrofittest.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.retrofittest.api.Todo
 import com.example.retrofittest.databinding.ItemTodoBinding
 
 class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
@@ -45,5 +46,12 @@ class TodoAdapter : RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
     override fun getItemCount(): Int {
         return todos.size
     }
+
+    fun setTodoList(todo: List<Todo>) {
+        this.todos = todo.toMutableList()
+        notifyDataSetChanged()
+    }
+
+
 
 }
