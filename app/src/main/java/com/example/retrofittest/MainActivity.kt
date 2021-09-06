@@ -19,19 +19,10 @@ import retrofit2.HttpException
 import java.io.IOException
 
 /*
-TODO navigation component raffen mit fragments und activity und andere aufrufen
 
-TODO stand von dem crash kurs in fragment auslagern mittels nav graph navigieren hin und zurück
+TODO zweites view model und repository einbauen und damit zeug anstellen auf gleichem fragment wie erstes
 
-TODO post request machen (falls die api das zulässt) und schauen obs geht mit 2ten button
-
-TODO mvvm pattern draus machen und schauen dass es noch geht
-
-TODO viewbinding versuchen zu verstehen
-
-TODO bottom navigation einbauen für die verschiedenen requests
-
-TODO put und delete noch einbauen falls die das unterstützen
+TODO room datenbank integrieren für user login und zum testen von mehreren tabellen z.b. posts darin speichern und abrufen
 
 TODO konzepte verwenden/lernen/anschauen: view binding (hier schon drin), dependy injection mit hilt, nav graph, room
  */

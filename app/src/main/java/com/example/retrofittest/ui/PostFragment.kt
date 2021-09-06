@@ -83,54 +83,23 @@ class PostFragment : Fragment() {
         if (!binding.editPost1.text.isEmpty() && !binding.editPost2.text.isEmpty() && !binding.editPost3.text.isEmpty()){
             val todo = CreateTodo(1, binding.editPost3.text.toString(), binding.editPost2.text.toString(), binding.editPost1.text.toString().toInt())
 
-            lifecycleScope.launchWhenCreated {
-                val response = try {
-                    RetrofitInstance.api.createTodo(todo)
-                } catch (e: HttpException) {
-                    return@launchWhenCreated
-                }
+            viewModel.todoCreate.observe(viewLifecycleOwner, {
+                binding.textViewPost.text = it
+            })
 
-                if (response.isSuccessful && response.body() != null) {
-
-                    Log.d("jo", "${response.body()}")
-                    Log.d("jo", Gson().toJson(response.body()))
-                    Log.d("jo", "${response.code()}")
-
-                    binding.textViewPost.text = Gson().toJson(response.body())
-
-                    Toast.makeText(requireContext(), response.code().toString(),Toast.LENGTH_LONG).show()
-                } else {
-
-                    Log.e("jo", "response not succesful")
-                }
-            }
+            viewModel.createTodo(todo)
         }
     }
 
     private fun updateTodo() {
         val todo = CreateTodo(1,"text", "okay", 99)
 
-        lifecycleScope.launchWhenCreated {
-            val response = try {
-                RetrofitInstance.api.putTodo(42, todo)
-            } catch (e: HttpException) {
-                return@launchWhenCreated
-            }
+        viewModel.todoUpdate.observe(viewLifecycleOwner, {
+            binding.textViewPost.text = it
+        })
 
-            if (response.isSuccessful && response.body() != null) {
+        viewModel.updateTodo(42, todo)
 
-                Log.d("jo", "${response.body()}")
-                Log.d("jo", Gson().toJson(response.body()))
-                Log.d("jo", "${response.code()}")
-
-                binding.textViewPost.text = Gson().toJson(response.body())
-
-                Toast.makeText(requireContext(), response.code().toString(),Toast.LENGTH_LONG).show()
-            } else {
-
-                Log.e("jo", "response not succesful")
-            }
-        }
     }
 
 }
