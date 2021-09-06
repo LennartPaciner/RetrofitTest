@@ -14,5 +14,9 @@ class TodoRepository(private val todoApi: TodoApi) {
         return todoApi.getTodos()
     }
 
+    suspend fun deleteTodo(value: Int): Response<Void> {
+        return todoApi.deleteTodo(value)
+    }
+
 }
 
