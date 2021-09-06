@@ -8,14 +8,23 @@ import androidx.lifecycle.viewModelScope
 import com.example.retrofittest.api.Todo
 import com.example.retrofittest.repository.TodoRepository
 import kotlinx.coroutines.launch
+import retrofit2.HttpException
 import java.lang.IllegalArgumentException
 
 class TodoViewModel(private val repository: TodoRepository) : ViewModel() {
 
+    //LiveData is a data holder class that can be observed within a given lifecycle.
+    //This means that an Observer can be added in a pair with a LifecycleOwner -> in getfragment passiert das
     val todoList = MutableLiveData<List<Todo>>()
 
     fun getTodos() = viewModelScope.launch {
-        val response = repository.getTodos()
+        val response = try {
+            repository.getTodos()
+        } catch (e: HttpException) {
+            Log.e("Error", e.message())
+            return@launch
+        }
+
         if (response.isSuccessful && response.body() != null) {
             todoList.postValue(response.body())
         }

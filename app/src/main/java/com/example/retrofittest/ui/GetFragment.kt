@@ -22,6 +22,7 @@ import com.example.retrofittest.viewmodels.TodoViewModelFactory
 import retrofit2.HttpException
 import java.io.IOException
 
+// TODO: tutorials hier: https://developer.android.com/courses/kotlin-android-fundamentals/overview
 // TODO artikel der mvvm retrofit beispiel beschreibt: https://medium.com/android-beginners/mvvm-with-kotlin-coroutines-and-retrofit-example-d3f5f3b09050
 // TODO nochmal cleanes projekt recyclercview raffen, retrofit aufruf, repository aufruf, viewmodel aufruf, in fragment aufrufen
 
@@ -59,10 +60,12 @@ class GetFragment : Fragment() {
         // viewmodel setup
         viewModel = ViewModelProvider(this, TodoViewModelFactory(todoRepository)).get(TodoViewModel::class.java)
 
+        //this observer will be notified about modifications of the wrapped data only if the paired LifecycleOwner is in active state
         viewModel.todoList.observe(viewLifecycleOwner, {
             todoAdapter.setTodoList(it)
         })
 
+        //nicht sicher ob progressbar was macht -> bekomme todoliste aus viewmodel
         binding.progressBar.isVisible = true
         viewModel.getTodos()
         binding.progressBar.isVisible = false

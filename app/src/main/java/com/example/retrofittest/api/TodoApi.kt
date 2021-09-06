@@ -24,6 +24,7 @@ interface TodoApi {
     @DELETE("/posts/{id}")
     suspend fun deleteTodo(@Path("id") id: Int) : Response<Void>
 
+    //possibly in repository reintun
     companion object {
 
         var todoApi: TodoApi?= null
