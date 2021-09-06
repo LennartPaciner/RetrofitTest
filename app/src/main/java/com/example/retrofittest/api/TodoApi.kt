@@ -24,7 +24,7 @@ interface TodoApi {
     @DELETE("/posts/{id}")
     suspend fun deleteTodo(@Path("id") id: Int) : Response<Void>
 
-    //possibly in repository reintun
+    //Instanz von todoapi -> aufrufen in fragments um repository zu übergeben
     companion object {
 
         var todoApi: TodoApi?= null
