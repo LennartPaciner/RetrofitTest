@@ -2,7 +2,6 @@ package com.example.retrofittest.ui
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,16 +9,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import com.example.retrofittest.api.CreateTodo
-import com.example.retrofittest.api.RetrofitInstance
 import com.example.retrofittest.api.TodoApi
 import com.example.retrofittest.databinding.FragmentPostBinding
 import com.example.retrofittest.repository.TodoRepository
 import com.example.retrofittest.viewmodels.TodoViewModel
 import com.example.retrofittest.viewmodels.TodoViewModelFactory
-import com.google.gson.Gson
-import retrofit2.HttpException
 
 class PostFragment : Fragment() {
 

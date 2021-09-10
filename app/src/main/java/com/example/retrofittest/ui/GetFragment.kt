@@ -1,26 +1,19 @@
 package com.example.retrofittest.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.retrofittest.api.RetrofitInstance
 import com.example.retrofittest.adapters.TodoAdapter
-import com.example.retrofittest.api.Todo
 import com.example.retrofittest.api.TodoApi
 import com.example.retrofittest.databinding.FragmentGetBinding
 import com.example.retrofittest.repository.TodoRepository
 import com.example.retrofittest.viewmodels.TodoViewModel
 import com.example.retrofittest.viewmodels.TodoViewModelFactory
-import retrofit2.HttpException
-import java.io.IOException
 
 // TODO: tutorials hier: https://developer.android.com/courses/kotlin-android-fundamentals/overview
 // TODO artikel der mvvm retrofit beispiel beschreibt: https://medium.com/android-beginners/mvvm-with-kotlin-coroutines-and-retrofit-example-d3f5f3b09050
