@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.retrofittest.BaseApplication
 import com.example.retrofittest.adapters.TodoAdapter
 import com.example.retrofittest.api.TodoApi
 import com.example.retrofittest.databinding.FragmentGetBinding
@@ -27,7 +29,9 @@ class GetFragment : Fragment() {
     private lateinit var todoAdapter: TodoAdapter
 
     //viewmodel
-    private lateinit var viewModel: TodoViewModel
+    private val viewModel: TodoViewModel by viewModels {
+        TodoViewModelFactory((activity?.application as BaseApplication).retrofitRepository)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,16 +46,13 @@ class GetFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val todoApi = TodoApi.getInstance()
-        val todoRepository = TodoRepository(todoApi)
-
         // reyclerviewsetup
         todoAdapter = TodoAdapter()
         binding.rvTodos.adapter = todoAdapter
         binding.rvTodos.layoutManager = LinearLayoutManager(requireContext())
 
-        // viewmodel setup
-        viewModel = ViewModelProvider(this, TodoViewModelFactory(todoRepository)).get(TodoViewModel::class.java)
+        // viewmodel setup ohne baseapplication
+        //viewModel = ViewModelProvider(this, TodoViewModelFactory(todoRepository)).get(TodoViewModel::class.java)
 
         //this observer will be notified about modifications of the wrapped data only if the paired LifecycleOwner is in active state
         viewModel.todoList.observe(viewLifecycleOwner, {

@@ -10,7 +10,6 @@ import retrofit2.create
 
 class TodoRepository(private val todoApi: TodoApi) {
 
-    // TODO not yet sure wofür man repo wirklich braucht -> mittels tutorial theorie verstehen
     suspend fun getTodos(): Response<List<Todo>> {
         return todoApi.getTodos()
     }

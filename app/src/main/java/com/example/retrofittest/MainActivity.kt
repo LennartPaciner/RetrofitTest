@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -14,6 +15,8 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.retrofittest.databinding.ActivityMainBinding
 import com.example.retrofittest.ui.GetFragment
+import com.example.retrofittest.viewmodels.TodoViewModel
+import com.example.retrofittest.viewmodels.TodoViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.HttpException
 import java.io.IOException

@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.retrofittest.api.TodoApi
 import com.example.retrofittest.database_tables.Passwords
 import com.example.retrofittest.database_tables.Usernames
 import kotlinx.coroutines.CoroutineScope
@@ -13,8 +14,11 @@ import kotlinx.coroutines.CoroutineScope
 @Database(entities = arrayOf(Usernames::class, Passwords::class), version = 1)
 abstract class DatabaseRetrofit: RoomDatabase() {
 
-    abstract fun passwordsDao(): PasswordsDao
-    abstract fun usernamesDao(): UsernamesDao
+    fun todoApi(): TodoApi {
+        return TodoApi.getInstance()
+    }
+
+    abstract fun databaseDao(): DatabaseDao
 
     // verhindert öffnen von mehreren database instanzen gleichzeitig z.b. in unterschiedlichen threads!
     // evtl durch dagger hilt nicht notwendig siehe wander app yt typ
