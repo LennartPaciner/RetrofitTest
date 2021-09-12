@@ -1,5 +1,6 @@
 package com.example.retrofittest.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.*
 import com.example.retrofittest.database_tables.Passwords
 import com.example.retrofittest.database_tables.Usernames
@@ -18,12 +19,21 @@ class DatabaseViewModel(private val repository: DatabaseRepository) : ViewModel(
         repository.insertUsernames(usernames)
     }
 
+    // TODO check ob auflösen auf fun mehr sinn macht oder nicht
+    suspend fun checkRegisterUsername(username: String): List<Usernames> {
+        return repository.checkRegisterUsername(username)
+    }
+
     fun getAllPasswords(): LiveData<List<Passwords>> {
         return repository.getAllPasswords()
     }
 
     fun insertPasswords(passwords: Passwords) = viewModelScope.launch {
         repository.insertPasswords(passwords)
+    }
+
+    suspend fun checkRegisterPassword(password: String): List<Passwords> {
+       return repository.checkRegisterPassword(password)
     }
 
 }

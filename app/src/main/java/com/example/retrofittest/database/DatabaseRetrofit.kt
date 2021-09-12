@@ -10,7 +10,7 @@ import com.example.retrofittest.database_tables.Passwords
 import com.example.retrofittest.database_tables.Usernames
 import kotlinx.coroutines.CoroutineScope
 
-// für migration zu neuer db version: https://medium.com/androiddevelopers/understanding-migrations-with-room-f01e04b07929
+// für migration zu neuer db version: https://medium.com/androiddevelopers/understanding-migrations-with-room-f01e04b07929 TODO
 @Database(entities = arrayOf(Usernames::class, Passwords::class), version = 1)
 abstract class DatabaseRetrofit: RoomDatabase() {
 

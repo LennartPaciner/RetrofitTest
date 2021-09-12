@@ -15,11 +15,19 @@ class DatabaseRepository(private val databaseDao: DatabaseDao) {
         databaseDao.insertUsernames(usernames)
     }
 
+    suspend fun checkRegisterUsername(username: String) : List<Usernames> {
+        return databaseDao.checkRegisterUsername(username)
+    }
+
     fun getAllPasswords(): LiveData<List<Passwords>> {
         return databaseDao.getAllPasswords()
     }
 
     suspend fun insertPasswords(passwords: Passwords) {
         databaseDao.insertPasswords(passwords)
+    }
+
+    suspend fun checkRegisterPassword(password: String) : List<Passwords> {
+        return databaseDao.checkRegisterPassword(password)
     }
 }

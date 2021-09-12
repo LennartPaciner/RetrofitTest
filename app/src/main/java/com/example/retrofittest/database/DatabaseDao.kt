@@ -19,6 +19,9 @@ interface DatabaseDao {
     @Delete
     suspend fun deleteUsernames(usernames: Usernames)
 
+    @Query("SELECT * FROM usernames WHERE :value IN (SELECT username FROM usernames)")
+    suspend fun checkRegisterUsername(value: String): List<Usernames>
+
 
 
 
@@ -27,4 +30,7 @@ interface DatabaseDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertPasswords(passwords: Passwords)
+
+    @Query("SELECT * FROM passwords WHERE :value IN (SELECT password FROM passwords)")
+    suspend fun checkRegisterPassword(value: String): List<Passwords>
 }
