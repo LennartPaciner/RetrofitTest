@@ -38,6 +38,8 @@ class DatabaseViewModel(private val repository: DatabaseRepository) : ViewModel(
        return repository.checkRegisterPassword(password)
     }
 
+    suspend fun deletePasswordsTable() = repository.deletePasswordsTable()
+
 }
 
 

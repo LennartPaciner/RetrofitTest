@@ -1,9 +1,11 @@
 package com.example.retrofittest.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -52,6 +54,17 @@ class RegisterFragment : Fragment() {
                 // ignoriere dass es den schon geben könnte - vllt noch adden TODO
                 viewModelDatabase.insertUsernames(username_new)
                 viewModelDatabase.insertPasswords(password_new)
+
+                binding.registerName.text.clear()
+                binding.registerPassword.text.clear()
+
+                // Hide soft keyboard beim wechseln der maske
+                val imm = activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.hideSoftInputFromWindow(requireView().getWindowToken(), 0)
+
+                // TODO adde neue navigation animation damit übergang nicht so ruckartig
+                val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
+                findNavController().navigate(action)
             }
         }
 
@@ -63,6 +76,7 @@ class RegisterFragment : Fragment() {
         binding.buttonRegisterDelete.setOnClickListener {
             lifecycleScope.launch {
                 viewModelDatabase.deleteUsernamesTable()
+                viewModelDatabase.deletePasswordsTable()
                 Toast.makeText(requireContext(), "Deleted", Toast.LENGTH_SHORT).show()
             }
         }

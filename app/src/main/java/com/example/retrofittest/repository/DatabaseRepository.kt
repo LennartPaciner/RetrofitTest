@@ -32,4 +32,6 @@ class DatabaseRepository(private val databaseDao: DatabaseDao) {
     suspend fun checkRegisterPassword(password: String) : List<Passwords> {
         return databaseDao.checkRegisterPassword(password)
     }
+
+    suspend fun deletePasswordsTable() = databaseDao.deletePasswordsTable()
 }

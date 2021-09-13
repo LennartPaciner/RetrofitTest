@@ -8,6 +8,7 @@ import com.example.retrofittest.database_tables.Usernames
 @Dao
 interface DatabaseDao {
 
+    // Tabelle usernames
     //scheinbar bei queries kein suspend fun sondern nur fun
     // Flow statt LiveData falls man kontinuierlichen datenstrom hat statt batch weise aufrufe
     @Query("SELECT * FROM usernames ORDER BY username ASC")
@@ -26,7 +27,7 @@ interface DatabaseDao {
     suspend fun deleteUsernamesTable()
 
 
-
+    // Tabelle passwords
     @Query("SELECT * FROM passwords")
     fun getAllPasswords(): LiveData<List<Passwords>>
 
@@ -35,4 +36,23 @@ interface DatabaseDao {
 
     @Query("SELECT * FROM passwords WHERE :value IN (SELECT password FROM passwords)")
     suspend fun checkRegisterPassword(value: String): List<Passwords>
+
+    @Query("DELETE FROM passwords")
+    suspend fun deletePasswordsTable()
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

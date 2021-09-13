@@ -76,10 +76,6 @@ class LoginFragment : Fragment() {
                         }
                     }
 
-                    Log.d("XD", "resultpassword scope" + resultPassword.toString())
-
-
-
                     if (resultUsername && resultPassword) {
                         edit_name.text.clear()
                         edit_password.text.clear()
