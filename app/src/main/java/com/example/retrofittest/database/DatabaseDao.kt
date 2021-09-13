@@ -20,7 +20,7 @@ interface DatabaseDao {
     @Delete
     suspend fun deleteUsernames(usernames: Usernames)
 
-    @Query("SELECT * FROM usernames WHERE :value IN (SELECT username FROM usernames)")
+    @Query("SELECT :value FROM usernames WHERE :value IN (SELECT username FROM usernames)")
     suspend fun checkRegisterUsername(value: String): List<Usernames>
 
     @Query("DELETE FROM usernames")
