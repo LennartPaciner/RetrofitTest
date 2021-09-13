@@ -4,8 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -16,6 +18,7 @@ import com.example.retrofittest.database_tables.Usernames
 import com.example.retrofittest.databinding.FragmentRegisterBinding
 import com.example.retrofittest.viewmodels.DatabaseViewModel
 import com.example.retrofittest.viewmodels.DatabaseViewModelFactory
+import kotlinx.coroutines.launch
 
 class RegisterFragment : Fragment() {
 
@@ -55,6 +58,13 @@ class RegisterFragment : Fragment() {
         binding.buttonRegisterBack.setOnClickListener {
             val action = RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()
             findNavController().navigate(action)
+        }
+
+        binding.buttonRegisterDelete.setOnClickListener {
+            lifecycleScope.launch {
+                viewModelDatabase.deleteUsernamesTable()
+                Toast.makeText(requireContext(), "Deleted", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

@@ -24,6 +24,8 @@ class DatabaseViewModel(private val repository: DatabaseRepository) : ViewModel(
         return repository.checkRegisterUsername(username)
     }
 
+    suspend fun deleteUsernamesTable() = repository.deleteUsernamesTable()
+
     fun getAllPasswords(): LiveData<List<Passwords>> {
         return repository.getAllPasswords()
     }

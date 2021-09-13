@@ -62,4 +62,15 @@
         app:layout_constraintStart_toStartOf="@id/button_register"
         app:layout_constraintTop_toTopOf="@+id/register_password" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_register_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:layout_marginBottom="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/button_register_back"
+        app:layout_constraintTop_toTopOf="@+id/button_register_back"
+        app:layout_constraintStart_toStartOf="@+id/button_register"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

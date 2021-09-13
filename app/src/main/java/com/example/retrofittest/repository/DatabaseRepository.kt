@@ -19,6 +19,8 @@ class DatabaseRepository(private val databaseDao: DatabaseDao) {
         return databaseDao.checkRegisterUsername(username)
     }
 
+    suspend fun deleteUsernamesTable() = databaseDao.deleteUsernamesTable()
+
     fun getAllPasswords(): LiveData<List<Passwords>> {
         return databaseDao.getAllPasswords()
     }

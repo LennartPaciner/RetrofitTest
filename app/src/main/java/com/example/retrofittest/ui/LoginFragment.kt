@@ -61,6 +61,7 @@ class LoginFragment : Fragment() {
                 lifecycleScope.launch {
 
                     val checkUserName = viewModelDatabase.checkRegisterUsername(username)
+                    Log.d("bojack", checkUserName.toString())
                     for (name in checkUserName) {
                         if (name.username == username) {
                             resultUsername = true

@@ -22,6 +22,8 @@ interface DatabaseDao {
     @Query("SELECT * FROM usernames WHERE :value IN (SELECT username FROM usernames)")
     suspend fun checkRegisterUsername(value: String): List<Usernames>
 
+    @Query("DELETE FROM usernames")
+    suspend fun deleteUsernamesTable()
 
 
 
